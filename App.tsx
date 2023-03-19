@@ -10,14 +10,13 @@ import ExpenseList from './components/ExpenseList'
 
 const HomeStackNav = createNativeStackNavigator()
 function HomeScreen(props: any) {
-  console.log({ props })
   return (
     <SafeAreaView style={styles.container}>
       <View>
         <SearchInput />
       </View>
       <View style={styles.expenseList}>
-        <ExpenseList />
+        <ExpenseList {...props}/>
       </View>
     </SafeAreaView>
   )

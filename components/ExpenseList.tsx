@@ -12,11 +12,11 @@ const DATA = [
   // ...
 ]
 
-export default function ExpenseList() {
+export default function ExpenseList(props: any) {
   return (
       <FlatList
         data={DATA}
-        renderItem={({ item }) => <ListItem item={item} styles={styles}/>}
+        renderItem={({ item }) => <ListItem item={item} styles={styles} {...props}/>}
         keyExtractor={item => item.id}
         style={{ flex: 1, width: '90%' }}
       />
