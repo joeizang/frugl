@@ -1,19 +1,34 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { TouchableOpacity, StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View } from 'react-native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import SearchInput from './components/SearchInput'
 import ExpenseList from './components/ExpenseList'
+import { CheckBox } from 'react-native-btr'
+import { useState } from 'react'
+import ExpenseStackScreen from './screens/Expense'
 
 const HomeStackNav = createNativeStackNavigator()
 function HomeScreen(props: any) {
+  const [checked, setChecked] = useState(false)
   return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <SearchInput />
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <View style={{ marginBottom: 3 }}>
+        <SearchInput showDateInput={checked}/>
+      </View>
+      <View style={{ justifyContent: 'flex-end', alignSelf: 'flex-start', flexDirection: 'row' }}>
+        <View style={{ width: '5%', marginLeft: 23, marginBottom: 10, borderRadius: 28, justifyContent: 'flex-end' }}>
+          <CheckBox
+            disabled={false}
+            checked={checked}
+            color={'#0F6D6C'}
+            onPress={() => setChecked(!checked)}
+          />
+        </View>
+          <Text style={{ marginLeft: 5, alignSelf: 'flex-start', padding: 3 }}>Search by Dates</Text>
       </View>
       <View style={styles.expenseList}>
         <ExpenseList {...props}/>
@@ -39,12 +54,14 @@ function HomeStackScreen() {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24
-      }}} />
+      },headerTintColor: 'whitesmoke'}} />
       <HomeStackNav.Screen name="Item Details" component={ItemDetailScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24
-      }}}/>
+      },
+      headerTintColor: 'whitesmoke'
+      }}/>
     </HomeStackNav.Navigator>
   )
 }
@@ -78,53 +95,16 @@ function ReportStackScreen() {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24
-      }}}/>
+      }, headerTintColor: 'whitesmoke'}}/>
       <ReportStackNav.Screen name="Report Details" component={ReportDetailsScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24
-      }}}/>
+      }, headerTintColor: 'whitesmoke'}}/>
     </ReportStackNav.Navigator>
   )
 }
 
-const AddExpenseStackNav = createNativeStackNavigator()
-function AddExpenseScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text>Add Expense Screen</Text>
-      </View>
-    </SafeAreaView>
-  )
-}
-
-function ExpenseDetailsScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text>Expense Details Screen</Text>
-      </View>
-    </SafeAreaView>
-  )
-}
-
-function ExpenseStackScreen() {
-  return (
-    <AddExpenseStackNav.Navigator>
-      <AddExpenseStackNav.Screen name="Expense" component={AddExpenseScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
-        color: 'whitesmoke',
-        fontWeight: '600',
-        fontSize: 24
-      }}}/>
-      <AddExpenseStackNav.Screen name="Expense Details" component={ExpenseDetailsScreen}  options={{ headerStyle: { backgroundColor: 'teal'},
-      headerTitleStyle: {
-        color: 'whitesmoke',
-      }
-    }}/>
-    </AddExpenseStackNav.Navigator>
-  )
-}
 
 const Tab = createBottomTabNavigator()
 
@@ -150,8 +130,8 @@ export default function App() {
           tabBarStyle: {
             backgroundColor: 'whitesmoke'
           },
-          tabBarActiveTintColor: 'tomato',
-          tabBarInactiveTintColor: 'darkblue',
+          tabBarActiveTintColor: '#CE6F8E',
+          tabBarInactiveTintColor: 'teal',
           headerShown: false
         })}
         
@@ -170,16 +150,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 5,
   },
   expenseList: { 
     flex: 1,
-    width: '97%',
-    paddingHorizontal: 5,
+    width: '100%',
+    paddingHorizontal: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'gray',
-    borderRadius: 10,
+    backgroundColor: '#3878A7',
     paddingTop: 15,
-    marginBottom: 5,
+    borderWidth: 2,
+    borderColor: '#00758D'
   }
 });
