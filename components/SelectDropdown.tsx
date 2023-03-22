@@ -1,13 +1,14 @@
 import React, { Fragment, useState } from 'react'
-import { StyleSheet, Text, TextInput, View } from 'react-native'
+import { Keyboard, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
+import DropdownMenuItems from './DropdownMenuItems'
 
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   dropdownMenu: {
-    width: '100%',
+    width: '97%',
     paddingLeft: 15,
     borderColor: 'teal',
     borderWidth: 2,
@@ -24,6 +25,7 @@ export const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 10,
     marginBottom: 1,
+    width: '97%'
   },
   dropDownText: { 
     color: 'white',
@@ -38,39 +40,35 @@ export default function SelectDropDown(props: any) {
   const [selectedType, setSelectedType] = useState('')
   return (
     <Fragment>
-      <View style={styles.dropdownWrapper}>
-        <TextInput
-          style={props.ExpenseInput}
-          placeholder="Select Expense Type"
-          value={selectedType}
-          onFocus={() => setShowDropDown(true)}
-          onBlur={() => setShowDropDown(false)}
-        />
-        <Ionicons
-          name="chevron-down-circle"
-          size={24}
-          color="teal"
-          style={props.InputIcon}
-          onPress={() => setShowDropDown(!showDropDown)}
-        />
-      </View>
-      {showDropDown ? <View style={styles.dropdownMenu}>
-        <View>
-          <Text style={styles.dropDownText}>Pick the type of Expense</Text>
+      <TouchableOpacity onPress={() => {
+        setShowDropDown(!showDropDown)
+        Keyboard.dismiss()
+      }}>
+        <View style={styles.dropdownWrapper}>
+          <TextInput
+            style={props.ExpenseInput}
+            placeholder="Select Expense Type"
+            value={selectedType}
+            editable={false}
+          />
+          <Ionicons
+            name="chevron-down-circle"
+            size={24}
+            color="#7576B2"
+            style={props.InputIcon}
+            onPress={() => setShowDropDown(!showDropDown)}
+          />
         </View>
-        <View>
-          <Text style={styles.dropDownText}>Groceries</Text>
-        </View>
-        <View>
-          <Text style={styles.dropDownText}>Market Shopping</Text>
-        </View>
-        <View>
-          <Text style={styles.dropDownText}>Entertainment</Text>
-        </View>
-        <View>
-          <Text style={styles.dropDownText}>Electronics</Text>
-        </View>
-      </View> : null}
+      </TouchableOpacity>
+      {showDropDown ?
+          <DropdownMenuItems
+            dropdownMenu={styles.dropdownMenu}
+            dropDownText={styles.dropDownText}
+            selectedType={selectedType}
+            setSelectedType={setSelectedType}
+          />
+        : null
+      }
     </Fragment>
   )
 }

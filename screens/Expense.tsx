@@ -1,9 +1,10 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { StyleSheet, View, Text, TextInput } from 'react-native'
+import { ActivityIndicator, Animated, StyleSheet, View, Text, TextInput, TouchableOpacity, Keyboard } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { Picker } from '@react-native-picker/picker'
 import SelectDropDown from '../components/SelectDropdown'
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker'
+import { useState } from 'react'
 
 const styles = StyleSheet.create({
   container: {
@@ -17,11 +18,25 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
   },
+  expenseTextAreaInput: {
+    height: 200,
+    width: '97%',
+    padding: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
+    borderWidth: 2,
+    borderColor: 'teal',
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    marginBottom: 50,
+    marginTop: 10,
+  },
   formContainer: {
     width: '100%',
     paddingHorizontal: 8,
     flex: 1,
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center'
   },
   InputWrapper: {
@@ -34,32 +49,24 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 10,
     marginBottom: 20,
-  },
-  textAreaStyle: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderRadius: 8,
-    borderWidth: 2,
-    borderColor: 'teal',
-    height: 50,
-    paddingVertical: 8,
-    paddingHorizontal: 10,
-    marginBottom: 20,
-    marginTop: 20
+    width: '97%'
   },
   inputIcon: {
     position: 'absolute',
-    right: 15
+    right: 15,
+    top: 10
   },
   expenseButton: {
     backgroundColor: '#CE6F8E',
     width: '97%',
     height: 50,
     borderRadius: 8,
+    shadowOffset: { width: 0, height: 3 },
     elevation: 10,
     shadowColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
+    marginBottom: 20,
   },
   expenseText: {
     color: 'whitesmoke',
@@ -68,11 +75,26 @@ const styles = StyleSheet.create({
   }
 })
 
+function dateShowMode(defaultDate: Date, dateChangeHandler: (ev: any, newDate: any) => void, dateMode: 'date' | 'time') {
+  DateTimePickerAndroid.open({
+    value: defaultDate,
+    onChange: dateChangeHandler,
+    mode: dateMode,
+    is24Hour: true,
+  })
+}
 
 
 
 const AddExpenseStackNav = createNativeStackNavigator()
 function AddExpenseScreen() {
+  const [showActivityIndicator, setShowActivityIndicator] = useState(false)
+  const [date, setDate] = useState(new Date())
+
+  const dateChangeHandler = (ev: any, newDate: Date) => {
+    const currentDate = newDate
+    setDate(currentDate)
+  }
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.formContainer}>
@@ -80,39 +102,48 @@ function AddExpenseScreen() {
           <TextInput
             placeholder="27-05-1987"
             style={styles.expenseInput}
+            keyboardType="default"
+            value={date.toDateString()}
+            onFocus={() => {
+              dateShowMode(date, dateChangeHandler, 'date')
+              Keyboard.dismiss()
+            }}
           />
-          <Ionicons name="calendar" size={24} color="teal" style={styles.inputIcon} />
+          <Ionicons name="calendar" size={24} color="#7576B2" style={styles.inputIcon} />
         </View>
         <View style={styles.InputWrapper}>
           <TextInput
             placeholder="How much did you spend?"
             style={styles.expenseInput}
+            keyboardType="numeric"
           />
-          <Ionicons name="wallet" size={24} color="teal" style={styles.inputIcon} />
+          <Ionicons name="wallet" size={24} color="#7576B2" style={styles.inputIcon} />
         </View>
         <SelectDropDown
           InputWrapper={styles.InputWrapper}
           ExpenseInput={styles.expenseInput}
           InputIcon={styles.inputIcon}
         />
-        <View style={styles.textAreaStyle}>
+        <View style={styles.expenseTextAreaInput}>
           <TextInput
             placeholder="Describe your expense"
-            style={styles.expenseInput}
             multiline={true}
-            numberOfLines={15}
-            
+            numberOfLines={25}
+            style={{ width: '100%', padding: 10, textAlignVertical: 'top' }}
           />
-          <Ionicons name="ios-clipboard" size={24} color="teal" style={styles.inputIcon} />
+          <Ionicons name="ios-clipboard" size={24} color="#7576B2" style={styles.inputIcon} />
         </View>
-        <View style={styles.expenseButton}>
-          <Text
-            style={styles.expenseText}
-          >
-            Add Expense
-          </Text>
+        <TouchableOpacity style={styles.expenseButton}>
+          <View style={{ flexDirection: 'row', gap: 15}}>
+            <Text
+              style={styles.expenseText}
+            >
+              Add Expense
+            </Text>
+            {showActivityIndicator ? <ActivityIndicator /> : null}
+          </View>
           <Ionicons name="ios-checkmark-circle-sharp" size={24} color="white" style={styles.inputIcon} />
-        </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   )
