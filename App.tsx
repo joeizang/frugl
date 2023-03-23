@@ -10,6 +10,7 @@ import ExpenseList from './components/ExpenseList'
 import { CheckBox } from 'react-native-btr'
 import { useState } from 'react'
 import ExpenseStackScreen from './screens/Expense'
+import ReportStackScreen from './screens/Reports'
 
 const HomeStackNav = createNativeStackNavigator()
 function HomeScreen(props: any) {
@@ -65,46 +66,6 @@ function HomeStackScreen() {
     </HomeStackNav.Navigator>
   )
 }
-
-
-const ReportStackNav = createNativeStackNavigator()
-function ReportScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text>Report Screen</Text>
-      </View>
-    </SafeAreaView>
-  )
-}
-
-function ReportDetailsScreen() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <View>
-        <Text>Report Details Screen</Text>
-      </View>
-    </SafeAreaView>
-  )
-}
-
-function ReportStackScreen() {
-  return (
-    <ReportStackNav.Navigator>
-      <ReportStackNav.Screen name="Report" component={ReportScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
-        color: 'whitesmoke',
-        fontWeight: '600',
-        fontSize: 24
-      }, headerTintColor: 'whitesmoke'}}/>
-      <ReportStackNav.Screen name="Report Details" component={ReportDetailsScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
-        color: 'whitesmoke',
-        fontWeight: '600',
-        fontSize: 24
-      }, headerTintColor: 'whitesmoke'}}/>
-    </ReportStackNav.Navigator>
-  )
-}
-
 
 const Tab = createBottomTabNavigator()
 
