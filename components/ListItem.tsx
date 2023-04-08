@@ -4,7 +4,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 export function ListItem(props: any) {
   return (
     <TouchableOpacity onPress={() => {
-        props.navigation.navigate('Item Details')
+        props.navigation.navigate('Expense Details')
       }}
       style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center' }}
     >

@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react'
-import { Keyboard, StyleSheet, TextInput, TouchableOpacity, View } from 'react-native'
+import { Keyboard, StyleSheet, TextInput, TouchableOpacity, View, Platform, Dimensions } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
-import DropdownMenuItems from './DropdownMenuItems'
+import { SelectList } from 'react-native-dropdown-select-list'
 
 export const styles = StyleSheet.create({
   container: {
@@ -22,10 +22,9 @@ export const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'teal',
     height: 50,
-    paddingVertical: 8,
-    paddingHorizontal: 10,
+    marginHorizontal: 8,
     marginBottom: 1,
-    width: '97%'
+    width: '69%'
   },
   dropDownText: { 
     color: 'white',
@@ -34,41 +33,41 @@ export const styles = StyleSheet.create({
   }
 })
 
+const typesOfExpenses = [
+  { key: 'Entertainment', value: 'ENTERTAINMENT', },
+  { key: 'Groceries', value: 'GROCERIES' },
+  { key: 'Utilities', value: 'UTILITIES' },
+  { key: 'FeesOrLevies', value: 'FEESORLEVIES' },
+  { key: 'Gifts', value: 'GIFTS' },
+  { key: 'Household', value: 'HOUSEHOLD' },
+  { key: 'Electronics', value: 'ELECTRONICS' },
+  { key: 'Personal', value: 'PERSONAL' },
+  { key: 'Carrer', value: 'CAREER' }
+]
+
 
 export default function SelectDropDown(props: any) {
   const [showDropDown, setShowDropDown] = useState(false)
   const [selectedType, setSelectedType] = useState('')
+  const width = Dimensions.get('window').width
   return (
     <Fragment>
-      <TouchableOpacity onPress={() => {
-        setShowDropDown(!showDropDown)
-        Keyboard.dismiss()
-      }}>
-        <View style={styles.dropdownWrapper}>
-          <TextInput
-            style={props.ExpenseInput}
-            placeholder="Select Expense Type"
-            value={selectedType}
-            editable={false}
-          />
-          <Ionicons
-            name="chevron-down-circle"
-            size={24}
-            color="#7576B2"
-            style={props.InputIcon}
-            onPress={() => setShowDropDown(!showDropDown)}
-          />
-        </View>
-      </TouchableOpacity>
-      {showDropDown ?
-          <DropdownMenuItems
-            dropdownMenu={styles.dropdownMenu}
-            dropDownText={styles.dropDownText}
-            selectedType={selectedType}
-            setSelectedType={setSelectedType}
-          />
-        : null
-      }
+      <SelectList
+        data={typesOfExpenses}
+        save={'value'}
+        setSelected={setSelectedType}
+        boxStyles={{
+          borderColor: 'teal',
+          borderWidth: 2,
+          minWidth: 359,
+          maxWidth: width,
+          width: width - 26,
+        }}
+        arrowicon={<Ionicons name="chevron-down-circle" size={24} color="#7576B2" />}
+        search={false}
+        dropdownStyles={{ borderColor: 'teal', borderWidth: 2 }}
+        dropdownItemStyles={{}}
+      />
     </Fragment>
   )
 }
