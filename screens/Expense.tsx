@@ -172,6 +172,7 @@ function AddExpenseScreen() {
               buttonAction={handleAddExpenseModal}
               buttonIcon={<SpinningSyncCircle />}
               isSubmitting={false}
+              color={'#CE6F8E'}
             />
           </View>
           <BottomSheetModal
