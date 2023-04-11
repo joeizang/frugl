@@ -219,8 +219,7 @@ function ExpenseDetailsScreen() {
     <SafeAreaView style={styles.container} edges={['top']}>
       <GestureHandlerRootView>
         <BottomSheetModalProvider>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            {/* <Text>Expense Details</Text> */}
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> 
             <AppButton
               buttonTitle="Show Modal"
               buttonAction={handlePresentModalPress}
@@ -229,7 +228,6 @@ function ExpenseDetailsScreen() {
               buttonIcon={<Ionicons name="ios-add" size={24} color="white" />}
               isSubmitting={false}
             />
-            {/* <View style={{ marginTop: 70 }}><Button title="Push Me" onPress={handlePresentModalPress} /></View> */}
           </View>
           <BottomSheetModal
             ref={bottomSheetModalRef}
