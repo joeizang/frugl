@@ -31,8 +31,8 @@ export default function AppHome() {
             tabBarStyle: {
               backgroundColor: 'whitesmoke'
             },
-            tabBarActiveTintColor: '#CE6F8E',
-            tabBarInactiveTintColor: 'teal',
+            tabBarActiveTintColor: '#00AD9A',
+            tabBarInactiveTintColor: '#5f6a00',
             headerShown: false
           })}
           

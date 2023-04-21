@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 14,
     borderWidth: 2,
-    borderColor: 'teal',
+    borderColor: '#5f6a00',
     marginBottom: 4,
     marginTop: 4,
     flexDirection: 'row',
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderWidth: 3,
     borderColor: 'white',
-    backgroundColor: 'teal',
+    backgroundColor: '#5f6a00',
     justifyContent: 'center',
     alignItems: 'center'
   }

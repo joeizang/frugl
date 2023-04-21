@@ -22,7 +22,7 @@ function HomeScreen(props: any) {
           <CheckBox
             disabled={false}
             checked={checked}
-            color={'#0F6D6C'}
+            color={'#5F6A00'}
             onPress={() => setChecked(!checked)}
           />
         </View>
@@ -48,12 +48,12 @@ function ItemDetailScreen() {
 export function HomeStackScreen() {
   return (
     <HomeStackNav.Navigator>
-      <HomeStackNav.Screen name="Home" component={HomeScreen} options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
+      <HomeStackNav.Screen name="Home" component={HomeScreen} options={{ headerStyle: { backgroundColor: '#5f6a00' }, headerTitleStyle: {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24
       },headerTintColor: 'whitesmoke'}} />
-      <HomeStackNav.Screen name="Expense Details" component={ExpenseDetailsScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
+      <HomeStackNav.Screen name="Expense Details" component={ExpenseDetailsScreen}  options={{ headerStyle: { backgroundColor: '#5f6a00' }, headerTitleStyle: {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3878A7',
+    backgroundColor: '#007767',
     paddingTop: 15,
     borderWidth: 2,
     borderColor: '#00758D'

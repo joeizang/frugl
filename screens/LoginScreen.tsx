@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
-import { ActivityIndicator, Dimensions, StyleSheet, Text, TextInput, View, TouchableNativeFeedback, Alert, TouchableOpacity } from 'react-native'
+import { ActivityIndicator, Dimensions, StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native'
 import Svg, { Image } from 'react-native-svg'
+import { StatusBar } from 'expo-status-bar'
+import { LoginScreenProps } from '../App'
 
 
-export default function() {
+const { height, width } = Dimensions.get('window')
+export default function(props: LoginScreenProps) {
   const [isLoading, setIsLoading] = useState(false)
-  const { height, width } = Dimensions.get('window')
   
   const handleLoginClick = () => {
     setIsLoading(true)
-    setTimeout(() => {
-      Alert.alert('Login button clicked!!!')
-      setIsLoading(false)
-    }, 3000)
+    props.accessToken ? props.fetchUserData() : props.promptAsync({ showInRecents: true })
+    setIsLoading(false)
   }
   return (
       <>
+        <StatusBar style="light" />
         <View style={StyleSheet.absoluteFill}>
           <Svg height={height} width={width}>
             <Image
@@ -27,20 +28,9 @@ export default function() {
           </Svg>
         </View>
         <View>
-          <View>
-            <TextInput style={styles.userLoginInput} placeholder="Username" placeholderTextColor={'white'} />
-          </View>
-          <View>
-            <TextInput style={styles.passwordLoginInput} placeholder="Password" placeholderTextColor={'white'} />
-          </View>
           <TouchableNativeFeedback onPress={handleLoginClick}>
             <View style={styles.loginButton}>
-              { !isLoading ? <Text style={styles.loginButtonText}>Login</Text> : <ActivityIndicator size={'small'} color="#fff"/>}
-            </View>
-          </TouchableNativeFeedback>
-          <View style={styles.socialLogins}>
-            <TouchableOpacity onPress={() => Alert.alert('Pressed!!!')}>
-              <View style={styles.socialButtons}>
+              { !isLoading ? <View style={{ justifyContent: 'space-evenly', flexDirection: 'row', alignItems: 'center'}}><Text style={styles.loginButtonText}>Login</Text><View style={styles.socialButtons}>
                 <Svg>
                   <Image
                     href={require('../assets/google.png')}
@@ -49,9 +39,14 @@ export default function() {
                     preserveAspectRatio=""
                   />
                 </Svg>
-              </View>
-            </TouchableOpacity>
-        </View>
+              </View></View> : <ActivityIndicator size={'small'} color="#5F6A00"/>}
+            </View>
+          </TouchableNativeFeedback>
+          <View>
+            <Text style={{ color: 'pink', fontWeight: '900', fontSize: 30 }}>{props.accessToken}</Text>
+            <Text style={{ color: 'pink', fontWeight: '900', fontSize: 30 }}>{props.userData?.email}</Text>
+            <Text style={{ color: 'pink', fontWeight: '900', fontSize: 30 }}>{props.userData?.email}</Text>
+          </View>
         </View>
       </>
   )
@@ -64,24 +59,26 @@ const styles = StyleSheet.create({
   },
   loginButton: {
     height: 55,
+    width: width - 20,
     alignItems: 'center',
     borderRadius: 20,
-    marginHorizontal: 20,
-    marginVertical: 10,
+    // marginHorizontal: 20,
+    // marginVertical: 10,
+    padding: 8,
     borderWidth: 3,
-    borderColor: 'white',
+    borderColor: '#ACAC9A',
     justifyContent: 'center',
     alignContent: 'center',
-    backgroundColor: '#acbb59',
+    backgroundColor: 'whitesmoke',
     shadowColor: 'black',
-    shadowOffset: { width: 0, height: 9 },
+    shadowOffset: { width: 60, height: 9 },
     shadowOpacity: 0.26,
     shadowRadius: 3.84,
     elevation: 5,
   },
   loginButtonText: {
     fontSize: 20,
-    color: 'white',
+    color: '#474838',
     fontWeight: '600',
     letterSpacing: 0.5
   },
@@ -120,11 +117,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   socialButtons: {
-    borderRadius: 10,
+    borderRadius: 25,
     borderWidth: 2,
     width: 50,
     height: 50,
-    borderColor: 'white',
+    borderColor: 'whitesmoke',
     backgroundColor: 'whitesmoke',
   },
   socialButtonsFacebook: {

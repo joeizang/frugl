@@ -27,9 +27,6 @@
       }
     }
   },
-  "expo": {
-    "scheme": "frugl"
-  },
   "submit": {
     "production": {}
   }

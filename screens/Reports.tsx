@@ -37,12 +37,12 @@ function ReportDetailsScreen() {
 export default function ReportStackScreen() {
   return (
     <ReportStackNav.Navigator>
-      <ReportStackNav.Screen name="Report" component={ReportScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
+      <ReportStackNav.Screen name="Report" component={ReportScreen}  options={{ headerStyle: { backgroundColor: '#5f6a00' }, headerTitleStyle: {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24
       }, headerTintColor: 'whitesmoke'}}/>
-      <ReportStackNav.Screen name="Report Details" component={ReportDetailsScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
+      <ReportStackNav.Screen name="Report Details" component={ReportDetailsScreen}  options={{ headerStyle: { backgroundColor: '5f6a00' }, headerTitleStyle: {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24

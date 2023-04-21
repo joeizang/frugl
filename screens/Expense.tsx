@@ -9,7 +9,7 @@ import { BottomSheetModal, BottomSheetModalProvider } from '@gorhom/bottom-sheet
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { AppButton } from '../components/AppButton'
 import SpinningSyncCircle from '../components/SpinningSyncCircle'
-// import { ExpenseDetailsScreen } from './ExpenseDetail'
+
 
 const width = Dimensions.get('window').width
 const styles = StyleSheet.create({
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: 'teal',
+    borderColor: '#5f6a00',
     paddingVertical: 8,
     paddingHorizontal: 10,
     marginBottom: 50,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 8,
     borderWidth: 2,
-    borderColor: 'teal',
+    borderColor: '#5f6a00',
     height: 50,
     paddingVertical: 8,
     paddingHorizontal: 10,
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     top: 10
   },
   expenseButton: {
-    backgroundColor: '#CE6F8E',
+    backgroundColor: '#00ADB3',
     width: width - 26,
     height: 50,
     borderRadius: 8,
@@ -124,7 +124,7 @@ function AddExpenseScreen() {
                   Keyboard.dismiss()
                 }}
               />
-              <Ionicons name="calendar" size={24} color="#7576B2" style={styles.inputIcon} />
+              <Ionicons name="calendar" size={24} color="#474838" style={styles.inputIcon} />
             </View>
             <View style={styles.InputWrapper}>
               <TextInput
@@ -132,7 +132,7 @@ function AddExpenseScreen() {
                 style={styles.expenseInput}
                 keyboardType="numeric"
               />
-              <Ionicons name="wallet" size={24} color="#7576B2" style={styles.inputIcon} />
+              <Ionicons name="wallet" size={24} color="#474838" style={styles.inputIcon} />
             </View>
             <SelectDropDown
               InputWrapper={styles.InputWrapper}
@@ -147,7 +147,7 @@ function AddExpenseScreen() {
               justifyContent: 'center',
               borderRadius: 8,
               borderWidth: 2,
-              borderColor: 'teal',
+              borderColor: '#5f6a00',
               paddingVertical: 8,
               paddingHorizontal: 10,
               marginBottom: 50,
@@ -163,7 +163,7 @@ function AddExpenseScreen() {
                   textAlignVertical: 'top',
                 }}
               />
-              <Ionicons name="ios-clipboard" size={24} color="#7576B2" style={styles.inputIcon} />
+              <Ionicons name="ios-clipboard" size={24} color="#474838" style={styles.inputIcon} />
             </View>
             <AppButton
               buttonTitle="Add Expense"
@@ -172,7 +172,7 @@ function AddExpenseScreen() {
               buttonAction={handleAddExpenseModal}
               buttonIcon={<SpinningSyncCircle />}
               isSubmitting={false}
-              color={'#CE6F8E'}
+              color={'#ACAC9A'}
             />
           </View>
           <BottomSheetModal
@@ -180,7 +180,7 @@ function AddExpenseScreen() {
             index={0}
             snapPoints={snapPoints}
             backgroundStyle={{ borderRadius: 30 }}
-            style={{ backgroundColor: 'teal', borderRadius: 30 }}
+            style={{ backgroundColor: '#5f6a00', borderRadius: 30 }}
           >
             <View style={{ borderRadius: 30,
               borderWidth: 4,
@@ -223,7 +223,7 @@ function ExpenseDetailsScreen() {
             <AppButton
               buttonTitle="Show Modal"
               buttonAction={handlePresentModalPress}
-              buttonStyle={{ backgroundColor: 'teal', width: 200, height: 50, borderRadius: 8, marginTop: 20 }}
+              buttonStyle={{ backgroundColor: '#5f6a00', width: 200, height: 50, borderRadius: 8, marginTop: 20 }}
               buttonTextStyle={{ color: 'white', fontSize: 20, fontWeight: '900' }}
               buttonIcon={<Ionicons name="ios-add" size={24} color="white" />}
               isSubmitting={false}
@@ -246,7 +246,7 @@ function ExpenseDetailsScreen() {
 export default function ExpenseStackScreen() {
   return (
     <AddExpenseStackNav.Navigator>
-      <AddExpenseStackNav.Screen name="Add Expense" component={AddExpenseScreen}  options={{ headerStyle: { backgroundColor: 'teal' }, headerTitleStyle: {
+      <AddExpenseStackNav.Screen name="Add Expense" component={AddExpenseScreen}  options={{ headerStyle: { backgroundColor: '#5f6a00' }, headerTitleStyle: {
         color: 'whitesmoke',
         fontWeight: '600',
         fontSize: 24

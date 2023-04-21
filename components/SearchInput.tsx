@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   searchInput: {
     height: 50,
     width: '97%',
-    borderColor: 'teal',
+    borderColor: '#5F6A00',
     borderWidth: 2,
     borderRadius: 8,
     marginBottom: 20,
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   dateInput: {
     height: 50,
     width: '100%',
-    borderColor: 'teal',
+    borderColor: '#5F6A00',
     borderWidth: 2,
     borderRadius: 8,
     marginBottom: 20,

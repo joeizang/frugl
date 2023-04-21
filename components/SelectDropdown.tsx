@@ -57,13 +57,13 @@ export default function SelectDropDown(props: any) {
         save={'value'}
         setSelected={setSelectedType}
         boxStyles={{
-          borderColor: 'teal',
+          borderColor: '#5f6a00',
           borderWidth: 2,
           minWidth: 359,
           maxWidth: width,
           width: width - 26,
         }}
-        arrowicon={<Ionicons name="chevron-down-circle" size={24} color="#7576B2" />}
+        arrowicon={<Ionicons name="chevron-down-circle" size={24} color="#474838" />}
         search={false}
         dropdownStyles={{ borderColor: 'teal', borderWidth: 2 }}
         dropdownItemStyles={{}}

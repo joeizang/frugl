@@ -1,7 +1,6 @@
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { View, Text, StyleSheet, Dimensions, TextInput } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons'
-import { useCallback } from 'react'
 import { AppButton } from '../components/AppButton'
 import { VictoryAxis, VictoryBar, VictoryChart, VictoryTheme } from 'victory-native'
 
@@ -85,7 +84,7 @@ export function ExpenseDetailsScreen(props: any) {
                 justifyContent: 'center',
                 borderRadius: 8,
                 borderWidth: 2,
-                borderColor: 'teal',
+                borderColor: '#5f6a00',
                 paddingVertical: 8,
                 paddingHorizontal: 10,
                 marginBottom: 30,
@@ -111,12 +110,12 @@ export function ExpenseDetailsScreen(props: any) {
               <AppButton
                 buttonTitle="Update Expense"
                 buttonAction={() => {handleNavigation()}}
-                buttonStyle={{ backgroundColor: 'teal', width: 150, borderRadius: 8, marginTop: 0 }}
+                buttonStyle={{ backgroundColor: '5f6a00', width: 150, borderRadius: 8, marginTop: 0 }}
                 buttonTextStyle={{ color: 'white', fontSize: 16, fontWeight: '900' }}
                 buttonIcon={<Ionicons name="ios-add" size={24} color="white" />}
                 isSubmitting={false}
                 height={30}
-                color={'#7576B2'}
+                color={'#474838'}
               />
             </View>
           </View>
